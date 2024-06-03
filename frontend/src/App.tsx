@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Plan from './components/Plan';
-import InvoiceForm from './components/InvoiceForm';
+import MultiStepForm from './components/MultiStepForm';
 
 const App: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const App: React.FC = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/plan" element={<Plan />} />
-          <Route path="/create-invoice" element={<InvoiceForm />} />
+          <Route path="/create-invoice" element={<MultiStepForm />} />
         </Routes>
       </div>
     </Router>
