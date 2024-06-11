@@ -58,6 +58,30 @@ const Step2: React.FC<Step2Props> = ({ formData, handleChange, errors }) => {
                 />
                 {errors.company_phone && <div className="invalid-feedback">{errors.company_phone}</div>}
             </div>
+            <div className="form-group">
+                <label htmlFor="vat_number">VAT Number</label>
+                <input
+                    type="text"
+                    className={`form-control ${errors.vat_number ? 'is-invalid' : ''}`}
+                    id="vat_number"
+                    name="vat_number"
+                    value={formData.vat_number}
+                    onChange={handleChange}
+                />
+                {errors.vat_number && <div className="invalid-feedback">{errors.vat_number}</div>}
+            </div>
+            <div className="form-group">
+                <label htmlFor="client_number">Client Number</label>
+                <input
+                    type="text"
+                    className={`form-control ${errors.client_number ? 'is-invalid' : ''}`}
+                    id="client_number"
+                    name="client_number"
+                    value={formData.client_number}
+                    onChange={handleChange}
+                />
+                {errors.client_number && <div className="invalid-feedback">{errors.client_number}</div>}
+            </div>
         </div>
     );
 };

@@ -16,6 +16,8 @@ const MultiStepForm: React.FC = () => {
     company_address: '',
     company_email: '',
     company_phone: '',
+    vat_number: '',
+    client_number: '',
     recipient_name: '',
     recipient_address: '',
     description: '',
@@ -51,6 +53,8 @@ const MultiStepForm: React.FC = () => {
       if (!formData.company_address) newErrors.company_address = 'Company Address is required';
       if (!formData.company_email) newErrors.company_email = 'Company Email is required';
       if (!formData.company_phone) newErrors.company_phone = 'Company Phone is required';
+      if (!formData.vat_number) newErrors.vat_number = 'VAT Number is required';
+      if (!formData.client_number) newErrors.client_number = 'Client Number is required';
     } else if (currentStep === 3) {
       if (!formData.recipient_name) newErrors.recipient_name = 'Recipient Name is required';
       if (!formData.recipient_address) newErrors.recipient_address = 'Recipient Address is required';
