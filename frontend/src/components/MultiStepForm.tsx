@@ -42,12 +42,29 @@ const MultiStepForm: React.FC = () => {
     });
   };
 
+  function validateDate(name: string, dateStr: string, newErrors: any) {
+    try {
+      new Date(dateStr);
+    } catch (e) {
+      newErrors[name] = "Not a valid date"
+    }
+  }
+
   const validate = () => {
     const newErrors: any = {};
     if (currentStep === 1) {
       if (!formData.invoice_date) newErrors.invoice_date = 'Invoice Date is required';
+      if (formData.invoice_date) validateDate('invoice_date', formData.invoice_date, newErrors);
       if (!formData.delivery_date) newErrors.delivery_date = 'Delivery Date is required';
+      if (formData.delivery_date) validateDate('delivery_date', formData.delivery_date, newErrors);
       if (!formData.invoice_number) newErrors.invoice_number = 'Invoice Number is required';
+      if (formData.invoice_date && formData.delivery_date) {
+        const invoiceDate = new Date(formData.invoice_date)
+        const deliveryDate = new Date(formData.delivery_date)
+        if (deliveryDate < invoiceDate) {
+          newErrors.delivery_date = "Delivery date cannot be before invoice date"
+        }
+      }
     } else if (currentStep === 2) {
       if (!formData.company_name) newErrors.company_name = 'Company Name is required';
       if (!formData.company_address) newErrors.company_address = 'Company Address is required';
