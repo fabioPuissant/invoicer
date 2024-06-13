@@ -8,6 +8,7 @@ import Step5 from './Step5';
 
 const MultiStepForm: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [enableNext, setEnableNext] = useState(false)
   const [formData, setFormData] = useState({
     invoice_date: '',
     delivery_date: '',
@@ -55,14 +56,14 @@ const MultiStepForm: React.FC = () => {
     if (currentStep === 1) {
       if (!formData.invoice_date) newErrors.invoice_date = 'Invoice Date is required';
       if (formData.invoice_date) validateDate('invoice_date', formData.invoice_date, newErrors);
-      if (!formData.delivery_date) newErrors.delivery_date = 'Delivery Date is required';
+      if (!formData.delivery_date) newErrors.delivery_date = 'Due Date is required';
       if (formData.delivery_date) validateDate('delivery_date', formData.delivery_date, newErrors);
       if (!formData.invoice_number) newErrors.invoice_number = 'Invoice Number is required';
       if (formData.invoice_date && formData.delivery_date) {
         const invoiceDate = new Date(formData.invoice_date)
         const deliveryDate = new Date(formData.delivery_date)
         if (deliveryDate < invoiceDate) {
-          newErrors.delivery_date = "Delivery date cannot be before invoice date"
+          newErrors.delivery_date = "Due date cannot be before invoice date"
         }
       }
     } else if (currentStep === 2) {
@@ -137,7 +138,7 @@ const MultiStepForm: React.FC = () => {
 
         <div className="mt-4">
           {currentStep > 1 && <button type="button" className="btn btn-secondary mr-2" onClick={prevStep}>Previous</button>}
-          {currentStep < 5 && <button type="button" className="btn btn-primary" onClick={nextStep}>Next</button>}
+          {currentStep < 5 && enableNext && <button type="button" className="btn btn-primary" onClick={nextStep}>Next</button>}
           {currentStep === 5 && <button type="submit" className="btn btn-success">Submit</button>}
         </div>
       </form>
